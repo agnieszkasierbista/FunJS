@@ -94,3 +94,31 @@ function giveFeedback(feedback) {
 };
 
 console.log(studentFeedback);
+
+// functional programming - function composition usin Ramda
+
+
+const sentence = 'PechaKucha is a presentation style in which 20 slides are shown for 20 seconds each (6 minutes and 40 seconds in total).';
+
+function isNumber(item) {
+  if (R.test(/[0-9]/, item)) {
+    return item;
+  };
+};
+//console.log(isNumber(7));
+//console.log(isNumber(v));
+
+const numbersInString = R.compose(R.length, R.filter(isNumber), R.split(""));
+
+
+expect(numbersInString(sentence)).toBe(7);
+
+console.log('If you see this printed in the console, the test passed!');
+
+// const numbersInString = R.pipe(
+//   R.split(''),
+//   R.map(parseInt), //parseInt jest elementem standardowej biblioteki JS
+//   R.filter(Number.isInteger),
+//   R.length,
+//   );
+
